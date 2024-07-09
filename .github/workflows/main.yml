@@ -10,9 +10,9 @@ jobs:
     name: 'Build and Push'
     runs-on: ubuntu-latest
 
-  steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
 
-  - name: Build docker image
-    run: docker build -t marcelocaldasdevops/nlw-journey-devops:latest .
+    - name: Build docker image
+      run: docker build -t marcelocaldasdevops/nlw-journey-devops:latest .
