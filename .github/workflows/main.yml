@@ -25,11 +25,12 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}  
-
-    - name: Build docker image
-      run: docker build -t marcelocaldasdevops/nlw-journey-devops:${{ steps.gererate_sha.outputs.sha}} .
-    - name: Push image 
-      run: |
-        docker push marcelocaldasdevops/nlw-journey-devops:${{ steps.gererate_sha.outputs.sha}}
-        docker tag  marcelocaldasdevops/nlw-journey-devops:${{ steps.gererate_sha.outputs.sha}} marcelocaldasdevops/nlw-journey-devops:latest
-        docker push marcelocaldasdevops/nlw-journey-devops:latest
+    
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: |
+            marcelocaldasdevops/nlw-journey-devops:${{ steps.gererate_sha.outputs.sha}}
+            marcelocaldasdevops/nlw-journey-devops:latest
